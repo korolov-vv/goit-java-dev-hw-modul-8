@@ -1,5 +1,6 @@
 package ua.goit.project.model.repository;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import ua.goit.project.model.entity.User;
 
@@ -12,6 +13,7 @@ public interface UserRepository extends Repository<User> {
     Optional<User> findByUniqueValue(String value);
 
     @Override
+    @Modifying
     @Query("delete from User u where u.userEmail=?1")
     void deleteByUniqueValue(String value);
 }

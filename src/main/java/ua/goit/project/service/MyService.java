@@ -5,6 +5,7 @@ import java.util.Optional;
 
 public interface MyService<T> {
     T create(T entity);
+
     List<T> readAll();
 
     Optional<T> read(String value);

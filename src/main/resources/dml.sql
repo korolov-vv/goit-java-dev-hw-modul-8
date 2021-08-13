@@ -27,3 +27,8 @@ INSERT INTO products
 VALUES (default, 'Product6', 10, 6);
 INSERT INTO products
 VALUES (default, 'Product7', 10, 7);
+
+INSERT INTO users
+VALUES (default, 'a@mail.com', 'sdfsdfsdfs', 'Ivan', 'Petrov', 'ROLE_ADMIN', 'ACTIVE');
+INSERT INTO users
+VALUES (default, 'b@mail.com', 'sdfsdfsdfs', 'Taras', 'Shevczenko', 'ROLE_USER', 'ACTIVE');

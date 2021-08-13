@@ -28,7 +28,7 @@ public class Product {
     @NotEmpty
     @Column(name = "price")
     private BigDecimal productPrice;
-    @ManyToOne
+    @ManyToOne(targetEntity = Manufacturer.class)
     @JoinColumn(name="manufacturer_id", nullable=false)
     private Manufacturer manufacturer;
 

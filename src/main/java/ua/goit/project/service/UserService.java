@@ -2,9 +2,10 @@ package ua.goit.project.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.goit.project.dto.enums.Role;
 import ua.goit.project.dto.enums.UserStatus;
-import ua.goit.project.exceptions.UserAlreadyExistException;
+import ua.goit.project.exceptions.ObjectAlreadyExistException;
 import ua.goit.project.model.entity.User;
 import ua.goit.project.model.repository.Repository;
 
@@ -24,7 +25,7 @@ public class UserService implements MyService<User> {
     @Override
     public User create(User user) {
         if (repository.findByUniqueValue(user.getUserEmail()).isPresent()) {
-            throw new UserAlreadyExistException(String.format("User with specified email already exist %s", user.getUserEmail()));
+            throw new ObjectAlreadyExistException(String.format("User with specified email already exist %s", user.getUserEmail()));
         }
         user.setRole(Role.ROLE_USER);
         user.setPassword(encoder.encode(user.getPassword()));
@@ -43,6 +44,7 @@ public class UserService implements MyService<User> {
     }
 
     @Override
+    @Transactional
     public void delete(String value) {
         repository.deleteByUniqueValue(value);
     }

@@ -4,13 +4,15 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum Role {
-    ROLE_ADMIN("ROLE_ADMIN"),
-    ROLE_USER("ROLE_USER");
+    ROLE_ADMIN("ROLE_ADMIN", "Admin"),
+    ROLE_USER("ROLE_USER", "User");
 
     private String role;
+    private String roleForDisplaying;
 
-    Role(String role) {
+    Role(String role, String roleForDisplaying) {
         this.role = role;
+        this.roleForDisplaying = roleForDisplaying;
     }
 
     public static Optional<Role> getRole(String role) {
@@ -23,4 +25,7 @@ public enum Role {
         return role;
     }
 
+    public String getRoleForDisplaying() {
+        return roleForDisplaying;
+    }
 }

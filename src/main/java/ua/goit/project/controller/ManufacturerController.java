@@ -1,10 +1,13 @@
 package ua.goit.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.project.model.entity.Manufacturer;
 import ua.goit.project.service.ManufacturerService;
 import ua.goit.project.service.MyService;
@@ -27,6 +30,13 @@ public class ManufacturerController {
         List<Manufacturer> manufacturers = service.readAll();
         model.addAttribute("manufacturers", manufacturers);
         return "manufacturers/manufacturers";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "/delete")
+    public RedirectView delete(@RequestParam(name = "manufacturerName") String manufacturerName) {
+        service.delete(manufacturerName);
+        return new RedirectView("/manufacturers");
     }
 
 /*    @PreAuthorize("hasRole('ROLE_ADMIN')")
