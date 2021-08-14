@@ -19,7 +19,7 @@ public class ManufacturerService implements MyService<Manufacturer> {
     }
 
     @Override
-    public Manufacturer create(Manufacturer manufacturer) {
+    public Manufacturer save(Manufacturer manufacturer) {
         if(repository.findByUniqueValue(manufacturer.getManufacturerName()).isPresent()){
             throw new ObjectAlreadyExistException(String.format("Manufacturer with specified name already exist %s",
                     manufacturer.getManufacturerName()));

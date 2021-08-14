@@ -15,6 +15,7 @@ import ua.goit.project.service.MyService;
 import ua.goit.project.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -40,26 +41,48 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/delete")
     public RedirectView delete(@RequestParam(name = "userEmail") String userEmail) {
-        service.delete(userEmail);
+        try {
+            service.delete(userEmail);
+        } catch (Exception ex) {
+            LOGGER.debug(ex.getMessage() + ex.getCause() + Arrays.toString(ex.getStackTrace()));
+        }
         return new RedirectView("/users");
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public String createOrUpdate(@Valid @ModelAttribute("userForm") User user, BindingResult result, Model model) {
-        LOGGER.info("------------THE USER TO CREATE IS:" + user.toString());
+        LOGGER.debug("------------THE USER TO CREATE OR UPDATE IS:" + user.toString());
         if (result.hasErrors()) {
             model.addAttribute("userForm", user);
             return "users/userForm";
         }
-        service.create(user);
+        try {
+        service.save(user);
+        } catch (Exception ex) {
+            LOGGER.debug(ex.getMessage() + ex.getCause() + Arrays.toString(ex.getStackTrace()));
+            model.addAttribute("message", ex.getMessage());
+            return "users/userForm";
+        }
         return "redirect:/users";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "form/add")
-    public String showUserForm() {
+    public String createUserForm() {
         return "users/userForm";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "form/update")
+    public String updateUserForm(@RequestParam(name = "userEmail") String email, Model model) {
+        if (service.read(email).isEmpty()) {
+            model.addAttribute("message", String.format("----------The user with email: %s not found", email));
+            return "redirect:error";
+        }
+        User user = service.read(email).get();
+        model.addAttribute("user", user);
+        return "users/updateUserForm";
     }
 
     @GetMapping("/registration")
@@ -74,7 +97,7 @@ public class UserController {
         }
 
         try {
-            service.create(user);
+            service.save(user);
         } catch (ObjectAlreadyExistException ex) {
             model.addAttribute("message", "Account with provided email already exists");
             return "registration";

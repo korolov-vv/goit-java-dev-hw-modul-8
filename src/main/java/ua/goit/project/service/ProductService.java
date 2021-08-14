@@ -19,7 +19,7 @@ public class ProductService implements MyService<Product> {
     }
 
     @Override
-    public Product create(Product product) {
+    public Product save(Product product) {
         if(repository.findByUniqueValue(product.getProductName()).isPresent()){
             throw new ObjectAlreadyExistException(String.format("Product with specified name already exist %s",
                     product.getProductName()));

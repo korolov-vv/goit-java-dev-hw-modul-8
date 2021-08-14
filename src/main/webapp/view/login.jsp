@@ -25,7 +25,7 @@
             <span>${error}</span>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${pageContext.request.contextPath}/user/registration">Create an account</a></h4>
+            <h5 class="text-center"><a href="${pageContext.request.contextPath}/user/registration">Create an account</a></h5>
         </div>
     </form>
 </div>
