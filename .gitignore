@@ -39,3 +39,7 @@ out/
 .vscode/
 
 logs/
+
+build
+out
+.DS_Store
