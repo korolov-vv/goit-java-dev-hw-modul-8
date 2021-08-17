@@ -27,12 +27,12 @@
             <td align="center"><b>${manufacturer.manufacturerName}</b></td>
             <security:authorize access="hasRole('ROLE_ADMIN')">
                 <td align="center">
-                    <a href="/manufacturers/form/update?name=${manufacturer.manufacturerName}">
+                    <a href="/manufacturers/form/update?manufacturerName=${manufacturer.manufacturerName}">
                         <button class="btn btn-outline-info my-2 my-sm-0">Update</button>
                     </a>
                 </td>
                 <td align="center">
-                    <a href="/manufacturers/delete?name=${manufacturer.manufacturerName}">
+                    <a href="/manufacturers/delete?manufacturerName=${manufacturer.manufacturerName}">
                         <button class="btn btn-outline-danger my-2 my-sm-0">Delete</button>
                     </a>
                 </td>

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import ua.goit.project.exceptions.ObjectAlreadyExistException;
 import ua.goit.project.model.entity.User;
 import ua.goit.project.service.MyService;
 import ua.goit.project.service.UserService;
@@ -83,27 +82,6 @@ public class UserController {
         User user = service.read(email).get();
         model.addAttribute("user", user);
         return "users/updateUserForm";
-    }
-
-    @GetMapping("/registration")
-    public String showRegistrationPage() {
-        return "registration";
-    }
-
-    @PostMapping("/registration")
-    public String register(@ModelAttribute("userForm") @Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "registration";
-        }
-
-        try {
-            service.save(user);
-        } catch (ObjectAlreadyExistException ex) {
-            model.addAttribute("message", "Account with provided email already exists");
-            return "registration";
-        }
-
-        return "login";
     }
 
     @ModelAttribute("userForm")

@@ -12,7 +12,7 @@
 <body>
 <c:import url="/view/navibar.jsp"/>
 <div class="form">
-    <form action="/users" accept-charset="utf-8" method="post"></br>
+    <form action="${pageContext.request.contextPath}/users" accept-charset="utf-8" method="post"></br>
         <div class="title">Update user</div>
         <div class="subtitle">Let's update the user!</div>
         <input type="hidden" name="userId" value='${user.userId}' />

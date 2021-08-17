@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.project.model.entity.Manufacturer;
 import ua.goit.project.service.ManufacturerService;
 import ua.goit.project.service.MyService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -39,36 +39,46 @@ public class ManufacturerController {
         return new RedirectView("/manufacturers");
     }
 
-/*    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
-    public String createOrUpdate(@Valid @ModelAttribute("entityForm") Manufacturer manufacturer, BindingResult result, Model model) {
+    public String createOrUpdate(
+            @Valid @ModelAttribute("manufacturerForm") Manufacturer manufacturer, BindingResult result, Model model
+    ) {
         if (result.hasErrors()) {
-            model.addAttribute("entityForm", manufacturer);
-            return "entityForm";
+            model.addAttribute("manufacturerForm", manufacturer);
+            return "manufacturers/manufacturerForm";
         }
-        service.create(manufacturer);
+        try {
+            service.save(manufacturer);
+        } catch (Exception ex) {
+            model.addAttribute("message", ex.getMessage());
+            return "users/userForm";
+        }
         return "redirect:/manufacturers";
-    }*/
-
-/*    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "form/add")
-    public <V> String showAddForm(Model model) {
-        return formPage;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "form/update")
-    public String showUpdateForm(@RequestParam(name = "userEmail") String userEmail, Model model) {
-        T entity = getEntityService().read(userEmail).orElseThrow();
-        model.addAttribute("entityForm", entity);
-        setRelatedEntities(model);
-        return formPage;
-    }*/
+    @GetMapping(path = "/form/add")
+    public String showAddForm(Model model) {
+        return "manufacturers/manufacturerForm";
+    }
 
-/*    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "/delete")
-    public RedirectView delete(@RequestParam(name = "userEmail") String userEmail) {
-        service.delete(userEmail);
-        return new RedirectView(String.format("/manufacturers"));
-    }*/
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "/form/update")
+    public String showUpdateForm(@RequestParam(name = "manufacturerName") String manufacturerName, Model model) {
+        if (service.read(manufacturerName).isEmpty()) {
+            model.addAttribute("message", String.format("----------The manufacturer with name: %s not found",
+                    manufacturerName));
+            return "redirect:error";
+        }
+        Manufacturer manufacturer = service.read(manufacturerName).get();
+        model.addAttribute("manufacturer", manufacturer);
+//        setRelatedEntities(model);
+        return "manufacturers/updateManufacturerForm";
+    }
+
+    @ModelAttribute("manufacturerForm")
+    public Manufacturer defaultManufacturer() {
+        return new Manufacturer();
+    }
 }

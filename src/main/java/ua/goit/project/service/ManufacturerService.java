@@ -1,6 +1,7 @@
 package ua.goit.project.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.goit.project.exceptions.ObjectAlreadyExistException;
 import ua.goit.project.model.entity.Manufacturer;
 import ua.goit.project.model.repository.ManufacturersRepository;
@@ -38,6 +39,7 @@ public class ManufacturerService implements MyService<Manufacturer> {
     }
 
     @Override
+    @Transactional
     public void delete(String value) {
         repository.deleteByUniqueValue(value);
     }
