@@ -7,6 +7,7 @@
         </button>
         <div class="dropdown-content">
             <a href="${pageContext.request.contextPath}/users">Show Users</a>
+            <a href="${pageContext.request.contextPath}/users/findUser">Find User</a>
             <security:authorize access="hasRole('ROLE_ADMIN')">
                 <a href="${pageContext.request.contextPath}/users/form/add">Create user</a>
             </security:authorize>
@@ -18,9 +19,8 @@
         </button>
         <div class="dropdown-content">
             <a href="${pageContext.request.contextPath}/manufacturers">Show Manufacturers</a>
-            <security:authorize access="hasRole('ROLE_ADMIN')">
-                <a href="${pageContext.request.contextPath}/manufacturers/form/add">Add manufacturer</a>
-            </security:authorize>
+            <a href="${pageContext.request.contextPath}/manufacturers/findManufacturer">Find manufacturer</a>
+            <a href="${pageContext.request.contextPath}/manufacturers/form/add">Add manufacturer</a>
         </div>
     </div>
     <div class="dropdown">
@@ -29,9 +29,8 @@
         </button>
         <div class="dropdown-content">
             <a href="${pageContext.request.contextPath}/products">Show Products</a>
-            <security:authorize access="hasRole('ROLE_ADMIN')">
-                <a href="${pageContext.request.contextPath}/products/form/add">Add product</a>
-            </security:authorize>
+            <a href="${pageContext.request.contextPath}/products/findProduct">Find product</a>
+            <a href="${pageContext.request.contextPath}/products/form/add">Add product</a>
         </div>
     </div>
     <div style="display: flex; justify-content: flex-end">

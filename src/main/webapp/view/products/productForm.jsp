@@ -11,10 +11,11 @@
 </head>
 <body>
 <c:import url="/view/navibar.jsp"/>
-<div class="form">
+<div class="three-fields-form ${error != null ? 'has-error' : ''}">
     <form action="${pageContext.request.contextPath}/products" accept-charset="utf-8" method="post"></br>
         <div class="title">Create product</div>
         <div class="subtitle">Let's create the product!</div>
+        <div class="error-message">${message}</div>
         <input type="hidden" name="productId" value=0 />
         <div class="input-container ic2">
             <input required id="productName" class="input" type="text" name="productName" placeholder=" "/>
@@ -31,6 +32,7 @@
             <div class="cut-short"></div>
             <label for="manufacturerName" class="placeholder">Manufacturer's name</label>
         </div>
+        <div class="error-message">${error}</div>
         <button type="submit" class="submit">SUBMIT</button>
     </form>
 </div>

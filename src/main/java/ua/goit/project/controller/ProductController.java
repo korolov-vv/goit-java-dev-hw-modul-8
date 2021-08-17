@@ -1,7 +1,6 @@
 package ua.goit.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,14 +35,29 @@ public class ProductController {
         return "products/products";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "findProduct")
+    public String findProductForm() {
+        return "products/findProductForm";
+    }
+
+    @GetMapping(path = "/product")
+    public String displayProduct(@RequestParam(name = "productName") String productName, Model model) {
+        if(productService.read(productName).isEmpty()){
+            model.addAttribute("message",
+                    String.format("The product with name %s not found", productName));
+            return "products/findProductForm";
+        }
+        Product product = productService.read(productName).get();
+        model.addAttribute(product);
+        return "products/displayProduct";
+    }
+
     @GetMapping(path = "/delete")
     public RedirectView delete(@RequestParam(name = "name") String productName) {
         productService.delete(productName);
         return new RedirectView("/products");
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public String createOrUpdate(
             @Valid @ModelAttribute("productForm") Product product, BindingResult result, Model model, @RequestParam("manufacturerName") String manufacturerName
@@ -66,13 +80,11 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "form/add")
     public String showAddForm(Model model) {
         return "products/productForm";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/form/update")
     public String showUpdateForm(@RequestParam(name = "name") String productName, Model model) {
         if (productService.read(productName).isEmpty()) {

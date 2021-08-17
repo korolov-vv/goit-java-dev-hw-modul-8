@@ -11,14 +11,15 @@
 </head>
 <body>
 <c:import url="/view/navibar.jsp"/>
-<div class="form">
+<div class="form ${error != null ? 'has-error' : ''}">
     <form action="${pageContext.request.contextPath}/users" accept-charset="utf-8" method="post"></br>
         <div class="title">Update user</div>
         <div class="subtitle">Let's update the user!</div>
+        <div class="error-message">${message}</div>
         <input type="hidden" name="userId" value='${user.userId}' />
         <div class="input-container ic1">
             <input required id="userEmail" class="input" type="text" name="userEmail"
-                   value="<c:out value='${user.userEmail}' />" readonly/>
+                   value="<c:out value='${user.userEmail}'/>" readonly/>
         </div>
         <div class="input-container ic2">
             <input required id="password" class="input" type="text" name="password" placeholder=" " />
@@ -27,7 +28,7 @@
         </div>
         <div class="input-container ic2">
             <input required id="firstName" class="input" type="text" name="firstName"
-                   value="<c:out value='${user.firstName}' />"/>
+                   value="<c:out value='${user.firstName}'/>"/>
             <div class="cut-short"></div>
             <label for="firstName" class="placeholder">First name</label>
         </div>
@@ -51,6 +52,7 @@
                 <option value="DISABLED">DISABLED</option>
             </select>
         </div>
+        <div class="error-message">${error}</div>
         <button type="submit" class="submit">SUBMIT</button>
     </form>
 </div>

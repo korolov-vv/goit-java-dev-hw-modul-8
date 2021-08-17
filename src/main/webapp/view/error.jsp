@@ -21,7 +21,7 @@
     <table width="100%" border="1">
         <tr valign="top">
             <td width="40%"><b>Error:</b></td>
-            <td>${pageContext.exception}</td>
+            <td>${message}</td>
         </tr>
 
         <tr valign="top">
@@ -34,27 +34,6 @@
             <td>${pageContext.errorData.statusCode}</td>
         </tr>
 
-        <tr valign="top">
-            <td><b>Stack trace:</b></td>
-            <td>
-                <c:forEach var="trace"
-                           items="${pageContext.exception.stackTrace}">
-                    <p>${trace}</p>
-                </c:forEach>
-            </td>
-        </tr>
     </table>
 </div>
-
-<%--<div class="error">
-    <pre>
-    <p>
-        <a>Something went wrong</a>
-    <c:if test="${message!=null}">
-        <a>Cause: '${message}'</a>
-        &lt;%&ndash;<a><% exception.printStackTrace(response.getWriter()); %></a>&ndash;%&gt;
-    </c:if>
-    </p>
-    </pre>
-</div>--%>
 </html>

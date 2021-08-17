@@ -1,7 +1,6 @@
 package ua.goit.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,14 +31,29 @@ public class ManufacturerController {
         return "manufacturers/manufacturers";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "findManufacturer")
+    public String findManufacturerForm() {
+        return "manufacturers/findManufacturerForm";
+    }
+
+    @GetMapping(path = "/manufacturer")
+    public String displayManufacturer(@RequestParam(name = "manufacturerName") String manufacturerName, Model model) {
+        if(service.read(manufacturerName).isEmpty()){
+            model.addAttribute("message",
+                    String.format("The Manufacturer with name %s not found", manufacturerName));
+            return "manufacturers/findManufacturerForm";
+        }
+        Manufacturer manufacturer = service.read(manufacturerName).get();
+        model.addAttribute(manufacturer);
+        return "manufacturers/displayManufacturer";
+    }
+
     @GetMapping(path = "/delete")
     public RedirectView delete(@RequestParam(name = "name") String manufacturerName) {
         service.delete(manufacturerName);
         return new RedirectView("/manufacturers");
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public String createOrUpdate(
             @Valid @ModelAttribute("manufacturerForm") Manufacturer manufacturer, BindingResult result, Model model
@@ -57,13 +71,11 @@ public class ManufacturerController {
         return "redirect:/manufacturers";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/form/add")
     public String showAddForm(Model model) {
         return "manufacturers/manufacturerForm";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/form/update")
     public String showUpdateForm(@RequestParam(name = "name") String manufacturerName, Model model) {
         if (service.read(manufacturerName).isEmpty()) {

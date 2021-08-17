@@ -29,6 +29,7 @@ public class UserService implements MyService<User> {
             user.setUserStatus(UserStatus.ACTIVE);
             return repository.save(user);
         }
+        user.setPassword(encoder.encode(user.getPassword()));
         return repository.saveAndFlush(user);
     }
 

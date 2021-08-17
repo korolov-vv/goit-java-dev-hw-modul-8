@@ -11,10 +11,11 @@
 </head>
 <body>
 <c:import url="/view/navibar.jsp"/>
-<div class="form">
+<div class="form ${error != null ? 'has-error' : ''}">
     <form action="/users" accept-charset="utf-8" method="post"></br>
         <div class="title">Create user</div>
         <div class="subtitle">Let's create the user!</div>
+        <div class="error-message">${message}</div>
         <input type="hidden" name="id" value=0 />
         <div class="input-container ic1">
             <input required id="userEmail" class="input" type="text" name="userEmail" placeholder=" "/>
@@ -48,6 +49,7 @@
                 <option value="DISABLED">Disabled</option>
             </select>
         </div>
+        <div class="error-message">${error}</div>
         <button type="submit" class="submit">SUBMIT</button>
     </form>
 </div>

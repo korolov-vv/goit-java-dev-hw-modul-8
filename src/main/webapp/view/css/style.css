@@ -241,6 +241,34 @@ form {
     transform: translate(-50%, -50%);
 }
 
+.one-field-form {
+    background-color: #333;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 350px;
+    padding: 20px;
+    width: 500px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.three-fields-form {
+    background-color: #333;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 450px;
+    padding: 20px;
+    width: 500px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 .title {
     color: #eee;
     font-family: sans-serif;
@@ -255,6 +283,15 @@ form {
     font-size: 16px;
     font-weight: 600;
     margin-top: 10px;
+}
+
+.error-message {
+    color: #fc0303;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .input-container {

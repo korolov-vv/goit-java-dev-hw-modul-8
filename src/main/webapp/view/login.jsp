@@ -13,7 +13,7 @@
 
 <body>
 <div class="container">
-    <form method="POST" class="form-signin" action="/login">
+    <form method="POST" class="form-signin" action="login">
         <h2 class="form-heading">Log in</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">

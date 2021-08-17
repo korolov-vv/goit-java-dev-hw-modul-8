@@ -37,6 +37,23 @@ public class UserController {
         return "users/users";
     }
 
+    @GetMapping(path = "findUser")
+    public String findUserForm() {
+        return "users/findUserForm";
+    }
+
+    @GetMapping(path = "/user")
+    public String displayUser(@RequestParam(name = "userEmail") String userEmail, Model model) {
+        if (service.read(userEmail).isEmpty()) {
+            model.addAttribute("message",
+                    String.format("The User with email %s not found", userEmail));
+            return "users/findUserForm";
+        }
+        User user = service.read(userEmail).get();
+        model.addAttribute(user);
+        return "users/displayUser";
+    }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/delete")
     public RedirectView delete(@RequestParam(name = "email") String userEmail) {
@@ -57,7 +74,7 @@ public class UserController {
             return "users/userForm";
         }
         try {
-        service.save(user);
+            service.save(user);
         } catch (Exception ex) {
             LOGGER.debug(ex.getMessage() + ex.getCause() + Arrays.toString(ex.getStackTrace()));
             model.addAttribute("message", ex.getMessage());
