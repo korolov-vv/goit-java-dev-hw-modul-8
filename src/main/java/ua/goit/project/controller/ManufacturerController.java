@@ -34,7 +34,7 @@ public class ManufacturerController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/delete")
-    public RedirectView delete(@RequestParam(name = "manufacturerName") String manufacturerName) {
+    public RedirectView delete(@RequestParam(name = "name") String manufacturerName) {
         service.delete(manufacturerName);
         return new RedirectView("/manufacturers");
     }
@@ -52,7 +52,7 @@ public class ManufacturerController {
             service.save(manufacturer);
         } catch (Exception ex) {
             model.addAttribute("message", ex.getMessage());
-            return "users/userForm";
+            return "manufacturers/manufacturerForm";
         }
         return "redirect:/manufacturers";
     }
@@ -65,7 +65,7 @@ public class ManufacturerController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/form/update")
-    public String showUpdateForm(@RequestParam(name = "manufacturerName") String manufacturerName, Model model) {
+    public String showUpdateForm(@RequestParam(name = "name") String manufacturerName, Model model) {
         if (service.read(manufacturerName).isEmpty()) {
             model.addAttribute("message", String.format("----------The manufacturer with name: %s not found",
                     manufacturerName));
@@ -73,7 +73,6 @@ public class ManufacturerController {
         }
         Manufacturer manufacturer = service.read(manufacturerName).get();
         model.addAttribute("manufacturer", manufacturer);
-//        setRelatedEntities(model);
         return "manufacturers/updateManufacturerForm";
     }
 

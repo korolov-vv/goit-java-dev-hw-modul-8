@@ -29,7 +29,7 @@ public class UserService implements MyService<User> {
             user.setUserStatus(UserStatus.ACTIVE);
             return repository.save(user);
         }
-        return repository.save(user);
+        return repository.saveAndFlush(user);
     }
 
     @Override

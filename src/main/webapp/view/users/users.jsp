@@ -33,12 +33,12 @@
             <td align="center"><b>${user.role.roleForDisplaying}</b></td>
             <security:authorize access="hasRole('ROLE_ADMIN')">
                 <td align="center">
-                    <a href="/users/form/update?userEmail=${user.userEmail}">
+                    <a href="/users/form/update?email=${user.userEmail}">
                         <button class="btn btn-outline-info my-2 my-sm-0">Update</button>
                     </a>
                 </td>
                 <td align="center">
-                    <a href="/users/delete?userEmail=${user.userEmail}">
+                    <a href="/users/delete?email=${user.userEmail}">
                         <button class="btn btn-outline-danger my-2 my-sm-0">Delete</button>
                     </a>
                 </td>

@@ -36,7 +36,7 @@
                     </a>
                 </td>
                 <td align="center">
-                    <a href="#<%--/products/delete?name=${product.productName}--%>">
+                    <a href="/products/delete?name=${product.productName}">
                         <button class="btn btn-outline-danger my-2 my-sm-0">Delete</button>
                     </a>
                 </td>

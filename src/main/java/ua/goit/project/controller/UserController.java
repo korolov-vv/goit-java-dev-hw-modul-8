@@ -39,7 +39,7 @@ public class UserController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/delete")
-    public RedirectView delete(@RequestParam(name = "userEmail") String userEmail) {
+    public RedirectView delete(@RequestParam(name = "email") String userEmail) {
         try {
             service.delete(userEmail);
         } catch (Exception ex) {
@@ -74,7 +74,7 @@ public class UserController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "form/update")
-    public String updateUserForm(@RequestParam(name = "userEmail") String email, Model model) {
+    public String updateUserForm(@RequestParam(name = "email") String email, Model model) {
         if (service.read(email).isEmpty()) {
             model.addAttribute("message", String.format("----------The user with email: %s not found", email));
             return "redirect:error";

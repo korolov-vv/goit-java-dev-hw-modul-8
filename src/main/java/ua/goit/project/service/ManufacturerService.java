@@ -2,7 +2,6 @@ package ua.goit.project.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.project.exceptions.ObjectAlreadyExistException;
 import ua.goit.project.model.entity.Manufacturer;
 import ua.goit.project.model.repository.ManufacturersRepository;
 import ua.goit.project.model.repository.Repository;
@@ -21,11 +20,7 @@ public class ManufacturerService implements MyService<Manufacturer> {
 
     @Override
     public Manufacturer save(Manufacturer manufacturer) {
-        if(repository.findByUniqueValue(manufacturer.getManufacturerName()).isPresent()){
-            throw new ObjectAlreadyExistException(String.format("Manufacturer with specified name already exist %s",
-                    manufacturer.getManufacturerName()));
-        }
-        return repository.save(manufacturer);
+        return repository.saveAndFlush(manufacturer);
     }
 
     @Override

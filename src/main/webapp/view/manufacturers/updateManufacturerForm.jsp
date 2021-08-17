@@ -13,8 +13,8 @@
 <c:import url="/view/navibar.jsp"/>
 <div class="form">
     <form action="${pageContext.request.contextPath}/manufacturers" accept-charset="utf-8" method="post"></br>
-        <div class="title">Create manufacturer</div>
-        <div class="subtitle">Let's create the manufacturer!</div>
+        <div class="title">Update manufacturer</div>
+        <div class="subtitle">Let's update the manufacturer!</div>
         <input type="hidden" name="manufacturerId" value='${manufacturer.manufacturerId}' />
         <div class="input-container ic2">
             <input required id="manufacturerName" class="input" type="text" name="manufacturerName"

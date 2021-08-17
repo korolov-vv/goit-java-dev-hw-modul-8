@@ -1,5 +1,6 @@
 package ua.goit.project.model.repository;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import ua.goit.project.model.entity.Product;
 
@@ -11,6 +12,7 @@ public interface ProductRepository extends Repository<Product> {
     Optional<Product> findByUniqueValue(String value);
 
     @Override
+    @Modifying
     @Query("delete from Product p where p.productName=?1")
     void deleteByUniqueValue(String value);
 }

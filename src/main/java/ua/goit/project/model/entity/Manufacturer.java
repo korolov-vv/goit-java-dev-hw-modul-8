@@ -23,7 +23,7 @@ public class Manufacturer {
     @NotEmpty
     @Column(name = "manufacturer_name", unique = true)
     private String manufacturerName;
-    @OneToMany(mappedBy="manufacturer")
+    @OneToMany(mappedBy="manufacturer", cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<Product> productsSet;
 
