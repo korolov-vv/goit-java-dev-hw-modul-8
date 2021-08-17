@@ -28,9 +28,11 @@
             <label for="productPrice" class="placeholder">Product Price</label>
         </div>
         <div class="input-container ic2">
-            <input required id="manufacturerName" class="input" type="text" name="manufacturerName" placeholder=" "/>
-            <div class="cut-short"></div>
-            <label for="manufacturerName" class="placeholder">Manufacturer's name</label>
+            <select required id="manufacturerName" class="input" name="manufacturerName">
+                <c:forEach var="manufacturer" items="${manufacturers}">
+                <option value='${manufacturer.manufacturerName}'>${manufacturer.manufacturerName}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="error-message">${error}</div>
         <button type="submit" class="submit">SUBMIT</button>

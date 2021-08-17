@@ -82,6 +82,8 @@ public class ProductController {
 
     @GetMapping(path = "form/add")
     public String showAddForm(Model model) {
+        List<Manufacturer> manufacturers = manufacturerService.readAll();
+        model.addAttribute("manufacturers", manufacturers);
         return "products/productForm";
     }
 
@@ -93,7 +95,9 @@ public class ProductController {
             return "redirect:error";
         }
         Product product = productService.read(productName).get();
+        List<Manufacturer> manufacturers = manufacturerService.readAll();
         model.addAttribute("product", product);
+        model.addAttribute("manufacturers", manufacturers);
         return "products/updateProductForm";
     }
 
