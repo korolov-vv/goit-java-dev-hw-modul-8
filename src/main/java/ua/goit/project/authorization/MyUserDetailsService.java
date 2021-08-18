@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.goit.project.model.entity.User;
-import ua.goit.project.model.repository.UserRepository;
+import ua.goit.project.repository.UserRepository;
 
 @Service(value = "userServiceDetails")
 public class MyUserDetailsService implements UserDetailsService {

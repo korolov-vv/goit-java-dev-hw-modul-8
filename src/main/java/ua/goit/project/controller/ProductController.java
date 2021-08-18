@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.project.model.entity.Manufacturer;
 import ua.goit.project.model.entity.Product;
 import ua.goit.project.service.ManufacturerService;
-import ua.goit.project.service.MyService;
+import ua.goit.project.service.IService;
 import ua.goit.project.service.ProductService;
 
 import javax.validation.Valid;
@@ -19,8 +19,8 @@ import java.util.List;
 @RequestMapping(path = "/products")
 public class ProductController {
 
-    MyService<Product> productService;
-    MyService<Manufacturer> manufacturerService;
+    IService<Product> productService;
+    IService<Manufacturer> manufacturerService;
 
     @Autowired
     public ProductController(ProductService productService, ManufacturerService manufacturerService) {

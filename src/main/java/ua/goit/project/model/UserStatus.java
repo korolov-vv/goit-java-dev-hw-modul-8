@@ -1,4 +1,4 @@
-package ua.goit.project.dto.enums;
+package ua.goit.project.model;
 
 public enum UserStatus {
     ACTIVE("ACTIVE"),

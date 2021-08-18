@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.project.model.entity.User;
-import ua.goit.project.service.MyService;
+import ua.goit.project.service.IService;
 import ua.goit.project.service.UserService;
 
 import javax.validation.Valid;
@@ -23,7 +23,7 @@ public class UserController {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    private MyService<User> service;
+    private IService<User> service;
 
     @Autowired
     public UserController(UserService userService) {

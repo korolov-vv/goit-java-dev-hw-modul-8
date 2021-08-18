@@ -1,4 +1,4 @@
-package ua.goit.project.dto.enums;
+package ua.goit.project.model;
 
 import java.util.Arrays;
 import java.util.Optional;

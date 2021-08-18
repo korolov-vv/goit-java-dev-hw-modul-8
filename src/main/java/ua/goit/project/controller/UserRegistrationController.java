@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.goit.project.exceptions.ObjectAlreadyExistException;
 import ua.goit.project.model.entity.User;
-import ua.goit.project.service.MyService;
+import ua.goit.project.service.IService;
 
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path = "/user")
 public class UserRegistrationController {
-    private MyService<User> service;
+    private IService<User> service;
 
     @Autowired
-    public UserRegistrationController(MyService<User> service) {
+    public UserRegistrationController(IService<User> service) {
         this.service = service;
     }
 

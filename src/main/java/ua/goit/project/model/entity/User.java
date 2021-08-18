@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import ua.goit.project.dto.enums.Role;
-import ua.goit.project.dto.enums.UserStatus;
+import ua.goit.project.model.Role;
+import ua.goit.project.model.UserStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
