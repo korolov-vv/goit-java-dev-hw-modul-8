@@ -7,7 +7,7 @@ plugins {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ua.goit.project.Application.java'
+                'Main-Class': 'ua.goit.project.Application'
         )
     }
 }
