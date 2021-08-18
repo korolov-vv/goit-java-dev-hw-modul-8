@@ -1,1 +1,0 @@
-web: java -jar target/goit-java-dev-hw-modul-8-*.jar
