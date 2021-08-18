@@ -26,12 +26,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.3'
     implementation 'org.springframework.boot:spring-boot-starter-security:2.5.3'
     implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.3.3.RELEASE'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-maven-plugin', version: '2.5.3'
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.3'
     implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.44'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.3'
     testImplementation 'org.springframework.security:spring-security-test:5.5.1'
-
 }
 
 test {
