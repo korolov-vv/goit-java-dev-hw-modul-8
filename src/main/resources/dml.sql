@@ -29,6 +29,6 @@ INSERT INTO products
 VALUES (default, 'Product7', 10, 7);
 
 INSERT INTO users
-VALUES (default, 'a@mail.com', 'sdfsdfsdfs', 'Ivan', 'Petrov', 'ROLE_ADMIN', 'ACTIVE');
+VALUES (default, 'admin@admin.com', '$2a$10$u8BXj1AYJXypWF4RdG60QuF7jTv7YXNI2kQSSPJo47UQ.aTEgPt/2', 'Ivan', 'Petrov', 'ROLE_ADMIN', 'ACTIVE');
 INSERT INTO users
-VALUES (default, 'b@mail.com', 'sdfsdfsdfs', 'Taras', 'Shevczenko', 'ROLE_USER', 'ACTIVE');
+VALUES (default, 'user@user.com', '$2a$10$nWGcsqdOEqSf1dB5t8Kf5uFSA6mwM9P8IbISjikP.rFC4XZzn5q8W', 'Taras', 'Shevczenko', 'ROLE_USER', 'ACTIVE');
