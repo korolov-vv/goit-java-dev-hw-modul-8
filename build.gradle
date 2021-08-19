@@ -4,13 +4,13 @@ plugins {
     id 'java'
 }
 
-/*jar {
+jar {
     manifest {
         attributes(
-                'Main-Class': 'ua.goit.project.Application.class'
+                'Main-Class': 'ua.goit.project.Application'
         )
     }
-}*/
+}
 
 group = 'ua.goit.project'
 version = '0.0.1-SNAPSHOT'
